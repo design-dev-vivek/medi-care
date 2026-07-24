@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Meridian Health — Design System
+   Global tokens & base styles derived from the style specimen (Vol. 1)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* ---- Typography -------------------------------------------------- */
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  --text-display-size: 4.75rem;   /* 76px */
+  --text-display-leading: 1.0;
+
+  --text-h1-size: 2.875rem;       /* 46px */
+  --text-h1-leading: 1.05;
+
+  --text-h2-size: 1.875rem;       /* 30px */
+  --text-h2-leading: 1.15;
+
+  --text-body-lg-size: 1.125rem;  /* 18px */
+  --text-body-lg-leading: 1.55;
+
+  --text-body-size: 0.9375rem;    /* 15px */
+  --text-body-leading: 1.55;
+
+  --text-italic-size: 1.125rem;   /* 18px */
+  --text-italic-leading: 1.5;
+
+  --text-caption-size: 0.75rem;   /* 12px */
+  --text-caption-leading: 1.4;
+  --text-caption-tracking: 0.06em;
+
+  /* ---- Color: paper, ink & spots ------------------------------------ */
+  --color-background: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201e1d;
+  --color-accent: #0088b0;   /* cyan — interactive */
+  --color-accent-2: #d6006c; /* magenta — 2nd spot */
+  --color-process-yellow: #edbb00; /* print treatments only */
+
+  /* ---- Tonal ramp: Neutral ------------------------------------------ */
+  --neutral-100: #f8f8f8;
+  --neutral-200: #eaeae9;
+  --neutral-300: #d7d7d6;
+  --neutral-400: #bbbab9;
+  --neutral-500: #8a8886;
+  --neutral-600: #747271;
+  --neutral-700: #5b5a58;
+  --neutral-800: #424140;
+  --neutral-900: #292928;
+
+  /* ---- Tonal ramp: Accent (Cyan) ------------------------------------ */
+  --accent-100: #f0f8fa;
+  --accent-200: #d1eaf1;
+  --accent-300: #a8d7e4;
+  --accent-400: #6bbad1;
+  --accent-500: #0088b0;
+  --accent-600: #007294;
+  --accent-700: #005a74;
+  --accent-800: #004154;
+  --accent-900: #002935;
+
+  /* ---- Tonal ramp: Accent 2 (Magenta) ------------------------------- */
+  --accent-2-100: #fdf0f6;
+  --accent-2-200: #f8d1e5;
+  --accent-2-300: #f1a8cd;
+  --accent-2-400: #e76baa;
+  --accent-2-500: #d6006c;
+  --accent-2-600: #b4005b;
+  --accent-2-700: #8d0047;
+  --accent-2-800: #670034;
+  --accent-2-900: #400020;
+}
+
+/* ---- Reset --------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---- Type scale ------------------------------------------------------
+   Headings and body share one family; size, weight and measure do the
+   organising. Apply directly to elements or via the utility classes.
+   -------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+}
+
+h1,
+.text-display {
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-leading);
+}
+
+h2,
+.text-h1 {
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-leading);
+}
+
+h3,
+.text-h2 {
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-leading);
+}
+
+p {
+  margin: 0;
+}
+
+.text-body-lg {
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-leading);
+}
+
+.text-body {
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-leading);
+}
+
+.text-italic,
+em,
+i {
+  font-style: italic;
+  font-size: var(--text-italic-size);
+  line-height: var(--text-italic-leading);
+}
+
+.text-caption {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-leading);
+  letter-spacing: var(--text-caption-tracking);
+  text-transform: uppercase;
+}
+
+/* ---- Color utilities ------------------------------------------------ */
+
+.surface {
+  background: var(--color-surface);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-accent-2 {
+  color: var(--color-accent-2);
+}
+
+.text-muted {
+  color: var(--neutral-600);
+}
+
+a {
+  color: var(--color-accent);
+}
