@@ -14,25 +14,32 @@
   --fw-regular: 400;
   --fw-semibold: 600;
 
-  --text-display-size: 4.75rem;   /* 76px */
+  --text-display-size: 4.75rem;
+  /* 76px */
   --text-display-leading: 1.0;
 
-  --text-h1-size: 2.875rem;       /* 46px */
+  --text-h1-size: 2.875rem;
+  /* 46px */
   --text-h1-leading: 1.05;
 
-  --text-h2-size: 1.875rem;       /* 30px */
+  --text-h2-size: 1.875rem;
+  /* 30px */
   --text-h2-leading: 1.15;
 
-  --text-body-lg-size: 1.125rem;  /* 18px */
+  --text-body-lg-size: 1.125rem;
+  /* 18px */
   --text-body-lg-leading: 1.55;
 
-  --text-body-size: 0.9375rem;    /* 15px */
+  --text-body-size: 0.9375rem;
+  /* 15px */
   --text-body-leading: 1.55;
 
-  --text-italic-size: 1.125rem;   /* 18px */
+  --text-italic-size: 1.125rem;
+  /* 18px */
   --text-italic-leading: 1.5;
 
-  --text-caption-size: 0.75rem;   /* 12px */
+  --text-caption-size: 0.75rem;
+  /* 12px */
   --text-caption-leading: 1.4;
   --text-caption-tracking: 0.06em;
 
@@ -40,9 +47,12 @@
   --color-background: #f3f2f2;
   --color-surface: #eae9e9;
   --color-text: #201e1d;
-  --color-accent: #0088b0;   /* cyan — interactive */
-  --color-accent-2: #d6006c; /* magenta — 2nd spot */
-  --color-process-yellow: #edbb00; /* print treatments only */
+  --color-accent: #0088b0;
+  /* cyan — interactive */
+  --color-accent-2: #d6006c;
+  /* magenta — 2nd spot */
+  --color-process-yellow: #edbb00;
+  /* print treatments only */
 
   /* ---- Tonal ramp: Neutral ------------------------------------------ */
   --neutral-100: #f8f8f8;
@@ -189,7 +199,21 @@ i {
 .text-muted {
   color: var(--neutral-600);
 }
+.book-btn{
+  background-color: var(--color-accent);
+  color: white;
+  font-weight: bold ;
+  padding: 12px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.6s ease ;
+}
+.book-btn:hover{
+  background-color: var(--accent-600);
+
+}
 
 a {
-  color: var(--color-accent);
+  color: var(--accent-500);
+
 }

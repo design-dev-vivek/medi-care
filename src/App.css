@@ -1,0 +1,5 @@
+.input-box{
+    background-color: var(--color-surface) !important;
+    color: var(--neutral-800);
+    border: 1px solid var(--neutral-400);
+}
