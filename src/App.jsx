@@ -1,15 +1,14 @@
-import React from 'react';
-import Date from './components/Date';
-import Time from './components/Time';
-import Review from './components/Review';
-function App() {
+
+import ListingPage from "./Pages/Listing-Page"
+import AppointmentPage from "./Pages/AppointmentSuccess"
+import CancelAppointment from "./Pages/CancelAppointment"
+
+function App(){
     return(
         <>
-            <Date />
-            <Time />
-            <Review />
+        {/* <AppointmentPage></AppointmentPage> */}
+        <CancelAppointment></CancelAppointment>
         </>
     )
 }
-
-export default App;
+export default App
