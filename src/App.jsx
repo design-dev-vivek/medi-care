@@ -1,10 +1,13 @@
 
 import ListingPage from "./Pages/Listing-Page"
+import AppointmentPage from "./Pages/AppointmentSuccess"
+import CancelAppointment from "./Pages/CancelAppointment"
 
 function App(){
     return(
         <>
-        <ListingPage></ListingPage>
+        {/* <AppointmentPage></AppointmentPage> */}
+        <CancelAppointment></CancelAppointment>
         </>
     )
 }
