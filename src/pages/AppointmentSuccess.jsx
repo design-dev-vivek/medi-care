@@ -9,9 +9,9 @@ function AppointmentSuccess() {
           </div>
         </div>
 
-        <h2 className="text-center mb-[18px] text-2xl font-bold text-gray-900">
+        <h3 className="text-center mb-[18px] text-2xl font-bold text-gray-900">
           Appointment confirmed 🎉
-        </h2>
+        </h3>
 
         <p className="text-center text-gray-700 text-lg leading-relaxed mb-7">
           Your appointment with <strong>Dr. Sarah Wilson</strong> has been
