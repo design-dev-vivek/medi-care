@@ -19,7 +19,7 @@ function ListingPage() {
           <div className="input-box flex gap-3 items-center mt-5  border border-gray-200 rounded-md w-100 px-2 ">
             <CiSearch  size={20} />
             <input
-              className="py-2 w-100 focus:ring-none outline-none border  border-none ring-none"
+              className="py-2 min-w-100 focus:ring-none outline-none border  border-none ring-none"
               type="text"
               placeholder="Search bye name or speciality..."
             />
@@ -72,7 +72,7 @@ function ListingPage() {
 
         {/* Card Section Start */}
           <h4 className="text-slate-500 tracking-wider py-5">16 Doctors</h4>
-        <div className="cards-container grid lg:grid-cols-3 md-grid-cols-2 sm-grid-cols-1 gap-2">
+        <div className="cards-container grid lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-2">
           <div className="card surface px-4 py-5">
             <div className="card-header py-2">
               <div className="flex gap-3">
@@ -81,7 +81,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -94,7 +94,7 @@ function ListingPage() {
               <span>$180 Visit</span>
             </div>
 
-            <div className="book flex gap-3 justify-between items-center">
+            <div className="book flex gap-3 justify-between items-center flex-wrap">
                 <span className="text-cyan-600 text-md">• Available Today</span>
 
                 <button className="book-btn">
@@ -111,7 +111,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -141,7 +141,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -171,7 +171,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -201,7 +201,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -231,7 +231,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -261,7 +261,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -291,7 +291,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -321,7 +321,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -351,7 +351,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -381,7 +381,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -411,7 +411,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -441,7 +441,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
@@ -471,7 +471,7 @@ function ListingPage() {
                 </div>
                 <div className="flex gap-2 flex-col">
                   <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="tag border-1 px-2">
+                  <a href="#" className="w-fit border px-2 py-1">
                     Cardiologist
                   </a>
                 </div>
