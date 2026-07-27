@@ -41,7 +41,7 @@
   --color-surface: #eae9e9;
   --color-text: #201e1d;
   --color-accent: #0088b0;   /* cyan — interactive */
-  --color-accent-2: #d6006c; /* magenta — 2nd spot */
+  --color-accent-2: ; /* magenta — 2nd spot */
   --color-process-yellow: #edbb00; /* print treatments only */
 
   /* ---- Tonal ramp: Neutral ------------------------------------------ */
