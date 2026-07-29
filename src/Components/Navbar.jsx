@@ -17,9 +17,6 @@ function Navbar() {
                     <a href="#" className="font-bold text-m">
                         My Appointments
                     </a>
-                    <span className="w-4 h-4 rounded-full bg-pink-700 text-white text-sm font-bold flex items-center justify-center">
-                        1
-                    </span>
                 </div>
             </div>
 

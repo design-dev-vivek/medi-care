@@ -2,14 +2,13 @@
    Meridian Health — Design System
    Global tokens & base styles derived from the style specimen (Vol. 1)
    ========================================================================== */
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
-@import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
 
 :root {
   /* ---- Typography -------------------------------------------------- */
-  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-serif: "Figtree", sans-serif;
 
   --fw-regular: 400;
   --fw-semibold: 600;

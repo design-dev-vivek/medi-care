@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "initials": "SW",
+    "avatarColor": "bg-orange-300",
+    "name": "Dr. Sarah Wilson",
+    "speciality": "Cardiologist",
+    "rating": 4.9,
+    "experience": "14yrs exp",
+    "fee": "₹1800 Visit",
+    "available": true
+  },
+  {
+    "id": 2,
+    "initials": "JM",
+    "avatarColor": "bg-sky-300",
+    "name": "Dr. James Miller",
+    "speciality": "Dermatologist",
+    "rating": 4.7,
+    "experience": "10yrs exp",
+    "fee": "₹1500 Visit",
+    "available": true
+  },
+  {
+    "id": 3,
+    "initials": "AK",
+    "avatarColor": "bg-emerald-300",
+    "name": "Dr. Anita Kapoor",
+    "speciality": "Dentist",
+    "rating": 4.8,
+    "experience": "12yrs exp",
+    "fee": "₹1200 Visit",
+    "available": false
+  },
+  {
+    "id": 4,
+    "initials": "RB",
+    "avatarColor": "bg-pink-300",
+    "name": "Dr. Robert Brown",
+    "speciality": "Pediatrician",
+    "rating": 4.6,
+    "experience": "8yrs exp",
+    "fee": "₹1400 Visit",
+    "available": true
+  },
+  {
+    "id": 5,
+    "initials": "PN",
+    "avatarColor": "bg-purple-300",
+    "name": "Dr. Priya Nair",
+    "speciality": "Neurologist",
+    "rating": 4.9,
+    "experience": "16yrs exp",
+    "fee": "₹2200 Visit",
+    "available": true
+  },
+  {
+    "id": 6,
+    "initials": "DT",
+    "avatarColor": "bg-amber-300",
+    "name": "Dr. David Thompson",
+    "speciality": "Orthopedic",
+    "rating": 4.5,
+    "experience": "11yrs exp",
+    "fee": "₹1700 Visit",
+    "available": false
+  },
+  {
+    "id": 7,
+    "initials": "MG",
+    "avatarColor": "bg-teal-300",
+    "name": "Dr. Meera Gupta",
+    "speciality": "General Physician",
+    "rating": 4.7,
+    "experience": "9yrs exp",
+    "fee": "₹1000 Visit",
+    "available": true
+  },
+  {
+    "id": 8,
+    "initials": "KL",
+    "avatarColor": "bg-rose-300",
+    "name": "Dr. Kevin Lee",
+    "speciality": "Cardiologist",
+    "rating": 4.8,
+    "experience": "13yrs exp",
+    "fee": "₹1900 Visit",
+    "available": true
+  },
+  {
+    "id": 9,
+    "initials": "SS",
+    "avatarColor": "bg-indigo-300",
+    "name": "Dr. Sneha Sharma",
+    "speciality": "Dermatologist",
+    "rating": 4.6,
+    "experience": "7yrs exp",
+    "fee": "₹1300 Visit",
+    "available": true
+  },
+  {
+    "id": 10,
+    "initials": "TW",
+    "avatarColor": "bg-lime-300",
+    "name": "Dr. Thomas White",
+    "speciality": "Dentist",
+    "rating": 4.4,
+    "experience": "6yrs exp",
+    "fee": "₹1100 Visit",
+    "available": false
+  },
+  {
+    "id": 11,
+    "initials": "NV",
+    "avatarColor": "bg-cyan-300",
+    "name": "Dr. Neha Verma",
+    "speciality": "Pediatrician",
+    "rating": 4.9,
+    "experience": "15yrs exp",
+    "fee": "₹1600 Visit",
+    "available": true
+  },
+  {
+    "id": 12,
+    "initials": "AC",
+    "avatarColor": "bg-fuchsia-300",
+    "name": "Dr. Andrew Clark",
+    "speciality": "Neurologist",
+    "rating": 4.7,
+    "experience": "10yrs exp",
+    "fee": "₹2100 Visit",
+    "available": true
+  },
+  {
+    "id": 13,
+    "initials": "RI",
+    "avatarColor": "bg-yellow-300",
+    "name": "Dr. Rina Iyer",
+    "speciality": "Orthopedic",
+    "rating": 4.5,
+    "experience": "9yrs exp",
+    "fee": "₹1750 Visit",
+    "available": false
+  },
+  {
+    "id": 14,
+    "initials": "BJ",
+    "avatarColor": "bg-red-300",
+    "name": "Dr. Brian Johnson",
+    "speciality": "General Physician",
+    "rating": 4.6,
+    "experience": "5yrs exp",
+    "fee": "₹950 Visit",
+    "available": true
+  },
+  {
+    "id": 15,
+    "initials": "VP",
+    "avatarColor": "bg-violet-300",
+    "name": "Dr. Vikram Patel",
+    "speciality": "Cardiologist",
+    "rating": 4.8,
+    "experience": "17yrs exp",
+    "fee": "₹2000 Visit",
+    "available": true
+  },
+  {
+    "id": 16,
+    "initials": "EG",
+    "avatarColor": "bg-green-300",
+    "name": "Dr. Emily Green",
+    "speciality": "Dermatologist",
+    "rating": 4.9,
+    "experience": "12yrs exp",
+    "fee": "₹1550 Visit",
+    "available": true
+  }
+]

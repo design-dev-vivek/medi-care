@@ -1,8 +1,38 @@
+import { useState } from "react";
 import "../App.css";
 import { CiSearch } from "react-icons/ci";
-import { IoMdStar } from "react-icons/io";
+import DoctorCard from "../components/DoctorCard";
+import doctors from "../data/doctors.json";
+
+const FILTER_TAGS = [
+  "All",
+  "Cardiologist",
+  "Dermatologist",
+  "Dentist",
+  "Pediatrician",
+  "Neurologist",
+  "Orthopedic",
+  "General Physician",
+];
 
 function ListingPage() {
+  // Why: the filter tags need to persist which one is selected, and that
+  // selection has to survive re-renders, so it lives in state instead of a
+  // plain variable. Defaults to "All" so every doctor shows on first load.
+  // How: useState returns the current value plus a setter; calling the
+  // setter (see the tag buttons below) triggers a re-render with the new value.
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  // Why: the card list and the "N Doctors" count must always reflect the
+  // active filter, and this is recalculated on every render rather than
+  // stored separately so it can never drift out of sync with activeFilter.
+  // How: when "All" is selected, use the full doctors list as-is; otherwise
+  // keep only the doctors whose speciality matches the selected tag.
+  const filteredDoctors =
+    activeFilter === "All"
+      ? doctors
+      : doctors.filter((doctor) => doctor.speciality === activeFilter);
+
   return (
     <>
       <div className=" main-container  lg:px-[126px] md:px-[66px] sm:px-[86px] py-10 w-full ">
@@ -17,482 +47,48 @@ function ListingPage() {
 
         <div className="serach-box">
           <div className="input-box flex gap-3 items-center mt-5  border border-gray-200 rounded-md w-100 px-2 ">
-            <CiSearch  size={20} />
+            <CiSearch size={20} />
             <input
               className="py-2 min-w-100 focus:ring-none outline-none border  border-none ring-none"
               type="text"
               placeholder="Search bye name or speciality..."
             />
           </div>
+          {/* Why: the tags are rendered from the FILTER_TAGS array instead of
+              being hand-written elements so there's a single source of truth
+              for the available specialities, and clicking one just updates
+              state rather than needing a handler per tag.
+              How: map each tag name to a button; onClick calls setActiveFilter
+              with that tag, and the className check re-applies the highlight
+              style to whichever button matches the current activeFilter. */}
           <div className="filter-tags py-5 flex gap-2 flex-wrap leading-wider">
-            <a href="#" className="tags border-1 text-center px-3 rounded-full">
-              All
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              Cardiologist
-            </a>
-            <a href="#" className="tags border-1 text-center px-3 rounded-full">
-              Dermalogist
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              Dentist
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              Pediatrician
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              Neurologist
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              Orthopedic
-            </a>
-            <a
-              href="#"
-              className="tags border-1 text-center  px-3 rounded-full"
-            >
-              General Physician
-            </a>
+            {FILTER_TAGS.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => setActiveFilter(tag)}
+                className={`tags border-1 text-center px-3 rounded-full cursor-pointer ${
+                  activeFilter === tag ? "bg-cyan-600 text-white border-cyan-600" : ""
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Card Section Start */}
-          <h4 className="text-slate-500 tracking-wider py-5">16 Doctors</h4>
-        <div className="cards-container grid lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-2">
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar color="#EC4899" /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center flex-wrap">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
-          <div className="card surface px-4 py-5">
-            <div className="card-header py-2">
-              <div className="flex gap-3">
-                <div className="card-img p-2 bg-orange-300 rounded-full text-xl  text-center max-w-14 h-12">
-                  SM
-                </div>
-                <div className="flex gap-2 flex-col">
-                  <h4>Dr. Sarah Wilson</h4>
-                  <a href="#" className="w-fit border px-2 py-1">
-                    Cardiologist
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rating flex gap-2 items-center py-3">
-              <IoMdStar /> <span>4.9 </span>
-              <span>14yrs exp</span>
-              <span>$180 Visit</span>
-            </div>
-
-            <div className="book flex gap-3 justify-between items-center">
-                <span className="text-cyan-600 text-md">• Available Today</span>
-
-                <button className="book-btn">
-                    Book Now
-                </button>
-
-            </div>
-          </div>
+        {/* Why: the count next to the grid should always match what's
+            actually rendered, so it reads from filteredDoctors (not the raw
+            doctors import) and updates automatically whenever the filter changes.
+            How: filteredDoctors.length gives the live count; mapping over the
+            same array spreads each doctor object as props onto DoctorCard,
+            with id used as the React key since it's unique per doctor. */}
+        <h4 className="text-slate-500 tracking-wider py-3">{filteredDoctors.length} Doctors</h4>
+        <div className="cards-container grid lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-3">
+          {filteredDoctors.map((doctor) => (
+            <DoctorCard key={doctor.id} {...doctor} />
+          ))}
         </div>
       </div>
     </>
