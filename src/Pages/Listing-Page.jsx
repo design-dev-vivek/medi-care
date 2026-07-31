@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "../App.css";
-import { CiSearch } from "react-icons/ci";
+
 import DoctorCard from "../components/DoctorCard";
 import doctors from "../data/doctors.json";
-
+import SearchFilter from "../components/SearchFilter"
 const FILTER_TAGS = [
   "All",
   "Cardiologist",
@@ -46,14 +46,9 @@ function ListingPage() {
         </p>
 
         <div className="serach-box">
-          <div className="input-box flex gap-3 items-center mt-5  border border-gray-200 rounded-md w-100 px-2 ">
-            <CiSearch size={20} />
-            <input
-              className="py-2 min-w-100 focus:ring-none outline-none border  border-none ring-none"
-              type="text"
-              placeholder="Search bye name or speciality..."
-            />
-          </div>
+          <SearchFilter />
+
+
           {/* Why: the tags are rendered from the FILTER_TAGS array instead of
               being hand-written elements so there's a single source of truth
               for the available specialities, and clicking one just updates
