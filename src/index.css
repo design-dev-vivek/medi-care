@@ -213,3 +213,21 @@ a {
   color: var(--accent-500);
 
 }
+.suggestion{
+  color: black;
+  padding: 2px 4px;
+  text-align: center;
+  
+}
+
+.suggestion:hover{
+  background-color: rgb(194, 194, 194);
+  border-radius :16px;
+  color: black;
+}
+.suggestion.active{
+  background-color: rgb(194, 194, 194);
+  border-radius :16px;
+  color: black;
+
+}
