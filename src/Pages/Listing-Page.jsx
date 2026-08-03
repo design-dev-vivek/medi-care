@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
+import { HiOutlineXMark } from "react-icons/hi2";
 
 import DoctorCard from "../components/DoctorCard";
 import doctors from "../data/doctors.json";
@@ -22,16 +24,70 @@ function ListingPage() {
   // How: useState returns the current value plus a setter; calling the
   // setter (see the tag buttons below) triggers a re-render with the new value.
   const [activeFilter, setActiveFilter] = useState("All");
+  const [search, setSearch] = useState("");
+  const [searchData, setsearchData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(-1);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleClose = () => {
+    setSearch = ""
+    setsearchData = ([])
+  }
+
+
+  const handleKeydown = (e) => {
+    // console.log(e.key);
+
+    if (selectedItem < searchData.length) {
+      if (e.key === "ArrowUp && selectedItem > 0 ") {
+        setSelectedItem(prev => prev - 1)
+      } else if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
+        setSelectedItem(prev => prev + 1)
+      } else if (e.key === "Enter" && selectedItem >= 0) {
+
+      }
+    }else{
+      selectedItem(-1)
+    }
+
+  }
+
+  useEffect(() => {
+  const newData = doctors.filter((spec) => {
+    return (
+      spec.name.toLowerCase().includes(search.toLowerCase()) ||
+      spec.speciality.toLowerCase().includes(search.toLowerCase())
+    );
+  });
+
+  setsearchData(newData);
+}, [search]);
 
   // Why: the card list and the "N Doctors" count must always reflect the
   // active filter, and this is recalculated on every render rather than
   // stored separately so it can never drift out of sync with activeFilter.
   // How: when "All" is selected, use the full doctors list as-is; otherwise
   // keep only the doctors whose speciality matches the selected tag.
-  const filteredDoctors =
-    activeFilter === "All"
-      ? doctors
-      : doctors.filter((doctor) => doctor.speciality === activeFilter);
+  // const filteredDoctors =
+  //   activeFilter === "All"
+  //     ? doctors
+  //     : doctors.filter((doctor) => doctor.speciality === activeFilter);
+
+  const filteredDoctors = doctors.filter((doctor) => {
+  // Tag Filter
+  const matchesFilter =
+    activeFilter === "All" || doctor.speciality === activeFilter;
+
+  // Search Filter
+  const matchesSearch =
+    doctor.name.toLowerCase().includes(search.toLowerCase()) ||
+    doctor.speciality.toLowerCase().includes(search.toLowerCase());
+
+  return matchesFilter && matchesSearch;
+});
 
   return (
     <>
@@ -46,9 +102,40 @@ function ListingPage() {
         </p>
 
         <div className="serach-box">
-          <SearchFilter />
+          <div className="input-box flex gap-3 items-center mt-5  border border-gray-200 rounded-md w-100 px-2 ">
+            <input
+              className="py-2 min-w-100 focus:ring-none outline-none border  border-none ring-none"
+              type="text"
+              placeholder="Search by name or speciality..."
+              onChange={handleChange}
+              onKeyDown={handleKeydown}
+              value={search}
+            />
+
+            <div className="icon">
 
 
+              {
+                search == "" ? <HiOutlineMagnifyingGlass /> : <HiOutlineXMark onClick={handleClose} />
+              }
+
+            </div>
+
+
+          </div>
+
+          <div className="search_result p-3.5 max-w-[250px] bg-[#EAE9E9] rounded-md mt-2 ">
+            {searchData.slice(0 , 5).map((data, index) => {
+              return (
+                <p
+                  key={index}
+                  className={selectedItem === index ? "suggestion active" : "suggestion"}
+                >
+                  {data.speciality}  {data.name} 
+                </p>
+              );
+            })}
+          </div>
           {/* Why: the tags are rendered from the FILTER_TAGS array instead of
               being hand-written elements so there's a single source of truth
               for the available specialities, and clicking one just updates
@@ -62,9 +149,8 @@ function ListingPage() {
                 key={tag}
                 type="button"
                 onClick={() => setActiveFilter(tag)}
-                className={`tags border-1 text-center px-3 rounded-full cursor-pointer ${
-                  activeFilter === tag ? "bg-cyan-600 text-white border-cyan-600" : ""
-                }`}
+                className={`tags border-1 text-center px-3 rounded-full cursor-pointer ${activeFilter === tag ? "bg-cyan-600 text-white border-cyan-600" : ""
+                  }`}
               >
                 {tag}
               </button>
