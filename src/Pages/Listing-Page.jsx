@@ -5,7 +5,7 @@ import { HiOutlineXMark } from "react-icons/hi2";
 
 import DoctorCard from "../components/DoctorCard";
 import doctors from "../data/doctors.json";
-
+import SearchFilter from "../components/SearchFilter"
 const FILTER_TAGS = [
   "All",
   "Cardiologist",
