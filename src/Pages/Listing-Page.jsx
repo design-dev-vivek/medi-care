@@ -33,24 +33,22 @@ function ListingPage() {
   }
 
   const handleClose = () => {
-    setSearch = ""
-    setsearchData = ([])
+    setSearch("")
+    setsearchData([])
   }
 
 
   const handleKeydown = (e) => {
-    // console.log(e.key);
-
     if (selectedItem < searchData.length) {
-      if (e.key === "ArrowUp && selectedItem > 0 ") {
+      if (e.key === "ArrowUp" && selectedItem > 0) {
         setSelectedItem(prev => prev - 1)
       } else if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
         setSelectedItem(prev => prev + 1)
       } else if (e.key === "Enter" && selectedItem >= 0) {
 
       }
-    }else{
-      selectedItem(-1)
+    } else {
+      setSelectedItem(-1)
     }
 
   }

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
     return (
         <nav className="bg-[#ebebeb] px-8 py-5 flex items-center justify-between font-serif">
@@ -11,12 +13,12 @@ function Navbar() {
             </div>
 
             <div className="flex items-center gap-8">
-                <h5>  Find a Doctor</h5>
+                <Link to="/">  Find a Doctor</Link>
 
                 <div className="flex items-center gap-2">
-                    <a href="#" className="font-bold text-m">
+                    <Link to="/appointments" className="font-bold text-m">
                         My Appointments
-                    </a>
+                    </Link>
                 </div>
             </div>
 

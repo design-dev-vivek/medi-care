@@ -1,12 +1,20 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useDoctor } from "../context/DoctorContext";
 
 function Review() {
+    const navigate = useNavigate();
+    const { selectedDoctor, selectedDate, selectedTime } = useDoctor();
+
     return (
         <>
             <section className="mt-15 max-w-6xl mx-auto px-45 ">
                 {/* back to doctor  */}
-                <div className="flex gap-2 items-center text-[#0088b0]">
+                <div
+                    className="flex gap-2 items-center text-[#0088b0] cursor-pointer"
+                    onClick={() => navigate("/booking/time")}
+                >
                     <div className=""><FaArrowLeft /></div>
                     <p className="text-md tracking-wider font-semibold">Back to doctors</p>
                 </div>
@@ -40,12 +48,16 @@ function Review() {
                 <div className="mt-7 rounded-lg bg-[#eaeae9] px-4 py-6">
                     <div className="flex gap-4">
                         <div className="">
-                            <p className=" w-15 h-15 uppercase rounded-full text-xl text-[#d6006c] py-3.5 bg-[#fdf0f6]  text-center">sw</p>
+                            <p className=" w-15 h-15 uppercase rounded-full text-xl text-[#d6006c] py-3.5 bg-[#fdf0f6]  text-center">
+                                {selectedDoctor?.initials}
+                            </p>
                         </div>
 
                         <div className="tracking-wider flex flex-col gap-0.5">
-                            <p className="text-xl font-bold">Dr.Sarah Wilson</p>
-                            <p className="text-md text-gray-700">cardiologist 14 yrs expert</p>
+                            <p className="text-xl font-bold">{selectedDoctor?.name}</p>
+                            <p className="text-md text-gray-700">
+                                {selectedDoctor?.speciality} {selectedDoctor?.experience}
+                            </p>
                         </div>
                     </div>
 
@@ -65,23 +77,25 @@ function Review() {
                     <div className="px-12 py-10 flex flex-col gap-12 tracking-wider">
                         <div className="flex justify-between">
                             <div className="text-gray-500 text-md ">DOCTOR</div>
-                            <div className="text-black text-md font-semibold">Dr. Sarah Wilson</div>
+                            <div className="text-black text-md font-semibold">{selectedDoctor?.name}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-gray-500 text-md ">SPECIALITY</div>
-                            <div className="text-black text-md font-semibold">Cardiologist</div>
+                            <div className="text-black text-md font-semibold">{selectedDoctor?.speciality}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-gray-500 text-md ">DATE</div>
-                            <div className="text-black text-md font-semibold">July 25 2036</div>
+                            <div className="text-black text-md font-semibold">
+                                {selectedDate?.month} {selectedDate?.date}
+                            </div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-gray-500 text-md ">TIME</div>
-                            <div className="text-black text-md font-semibold">10:00 AM</div>
+                            <div className="text-black text-md font-semibold">{selectedTime}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-gray-500 text-md ">CONSULTATION FEE</div>
-                            <div className="text-black text-md font-semibold">$180</div>
+                            <div className="text-black text-md font-semibold">{selectedDoctor?.fee}</div>
                         </div>
                     </div>
 
@@ -91,11 +105,19 @@ function Review() {
 
                 <div className="mt-7 flex justify-between">
                     <div>
-                        <button className=" border px-3 py-2 border-[#bbbab9] font-bold rounded-sm ">Back to doctor</button>
+                        <button
+                            className=" border px-3 py-2 border-[#bbbab9] font-bold rounded-sm "
+                            onClick={() => navigate("/booking/time")}
+                        >
+                            Back to doctor
+                        </button>
                     </div>
                     <div>
-                        <button className="text-white tracking-wider px-3 py-2 font-bold rounded-sm bg-[#0088b0] hover:bg-[#1a9bc3]">
-                            Choose a time
+                        <button
+                            className="text-white tracking-wider px-3 py-2 font-bold rounded-sm bg-[#0088b0] hover:bg-[#1a9bc3]"
+                            onClick={() => navigate("/appointment-success")}
+                        >
+                            Confirm Booking
                         </button>
                     </div>
                 </div>

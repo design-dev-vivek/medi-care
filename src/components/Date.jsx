@@ -1,10 +1,41 @@
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-function Date() {
+import { useNavigate } from "react-router-dom";
+import { useDoctor } from "../context/DoctorContext";
+
+const DAY_NAMES = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+];
+
+function buildCalendarDates() {
+    const today = new Date();
+    return Array.from({ length: 14 }, (_, i) => {
+        const day = new Date(today);
+        day.setDate(today.getDate() + i);
+        return {
+            day: DAY_NAMES[day.getDay()],
+            date: day.getDate(),
+            month: MONTH_NAMES[day.getMonth()],
+        };
+    });
+}
+
+function DateStep() {
+    const navigate = useNavigate();
+    const { selectedDoctor, setSelectedDate } = useDoctor();
+    const [calendarDates] = useState(buildCalendarDates);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
     return (
         <>
             <section className=" mt-15 max-w-6xl mx-auto px-45  ">
                 {/* back to doctor  */}
-                <div className="flex gap-2 items-center text-[#0088b0]">
+                <div
+                    className="flex gap-2 items-center text-[#0088b0] cursor-pointer"
+                    onClick={() => navigate("/")}
+                >
                     <div className=""><FaArrowLeft /></div>
                     <p className="text-md tracking-wider font-semibold">Back to doctors</p>
                 </div>
@@ -38,12 +69,16 @@ function Date() {
                 <div className="mt-7 rounded-lg bg-[#eaeae9] px-4 py-6">
                     <div className="flex gap-4">
                         <div className="">
-                            <p className=" w-15 h-15 uppercase rounded-full text-xl text-[#d6006c] py-3.5 bg-[#fdf0f6]  text-center">sw</p>
+                            <p className=" w-15 h-15 uppercase rounded-full text-xl text-[#d6006c] py-3.5 bg-[#fdf0f6]  text-center">
+                                {selectedDoctor?.initials}
+                            </p>
                         </div>
 
                         <div className="tracking-wider flex flex-col gap-0.5">
-                            <p className="text-xl font-bold">Dr.Sarah Wilson</p>
-                            <p className="text-md text-gray-700">cardiologist 14 yrs expert</p>
+                            <p className="text-xl font-bold">{selectedDoctor?.name}</p>
+                            <p className="text-md text-gray-700">
+                                {selectedDoctor?.speciality} {selectedDoctor?.experience}
+                            </p>
                         </div>
                     </div>
 
@@ -60,95 +95,24 @@ function Date() {
 
                 <div className="mt-7 grid grid-cols-7 gap-5 text-center">
 
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">FRI</p>
-                        <p className="text-black text-lg font-bold">24</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-[#0088b0] rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-white">SAT</p>
-                        <p className="text-white text-lg font-bold">25</p>
-                        <p className="text-white">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">SUN</p>
-                        <p className="text-black text-lg font-bold">26</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">MON</p>
-                        <p className="text-black text-lg font-bold">27</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">TUE</p>
-                        <p className="text-black text-lg font-bold">28</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">WED</p>
-                        <p className="text-black text-lg font-bold">29</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">THU</p>
-                        <p className="text-black text-lg font-bold">30</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">FRI</p>
-                        <p className="text-black text-lg font-bold">31</p>
-                        <p className="text-[#747271]">July</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-5 py-2">
-                        <p className="text-[#747271]">SAT</p>
-                        <p className="text-black text-lg font-bold">1</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">SUN</p>
-                        <p className="text-black text-lg font-bold">2</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">MON</p>
-                        <p className="text-black text-lg font-bold">3</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">TUE</p>
-                        <p className="text-black text-lg font-bold">4</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">WED</p>
-                        <p className="text-black text-lg font-bold">5</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">THU</p>
-                        <p className="text-black text-lg font-bold">6</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
-
-                    <div className="bg-white rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2">
-                        <p className="text-[#747271]">FRI</p>
-                        <p className="text-black text-lg font-bold">7</p>
-                        <p className="text-[#747271]">August</p>
-                    </div>
+                    {calendarDates.map((item, index) => {
+                        const isActive = index === selectedIndex;
+                        return (
+                            <div
+                                key={`${item.month}-${item.date}`}
+                                onClick={() => setSelectedIndex(index)}
+                                className={`rounded-sm border border-[#bbbab9] shadow-[#bbbab9] shadow-md px-7 py-2 cursor-pointer ${
+                                    isActive ? "bg-[#0088b0]" : "bg-white"
+                                }`}
+                            >
+                                <p className={isActive ? "text-white" : "text-[#747271]"}>{item.day}</p>
+                                <p className={`text-lg font-bold ${isActive ? "text-white" : "text-black"}`}>
+                                    {item.date}
+                                </p>
+                                <p className={isActive ? "text-white" : "text-[#747271]"}>{item.month}</p>
+                            </div>
+                        );
+                    })}
 
                 </div>
 
@@ -156,10 +120,21 @@ function Date() {
 
                 <div className="mt-7 flex justify-between">
                     <div>
-                        <button className=" border px-3 py-2 border-[#bbbab9] font-bold rounded-sm ">Back to doctor</button>
+                        <button
+                            className=" border px-3 py-2 border-[#bbbab9] font-bold rounded-sm "
+                            onClick={() => navigate("/")}
+                        >
+                            Back to doctor
+                        </button>
                     </div>
                     <div>
-                        <button className="text-white tracking-wider px-3 py-2 font-bold rounded-sm bg-[#0088b0] hover:bg-[#1a9bc3]">
+                        <button
+                            className="text-white tracking-wider px-3 py-2 font-bold rounded-sm bg-[#0088b0] hover:bg-[#1a9bc3]"
+                            onClick={() => {
+                                setSelectedDate(calendarDates[selectedIndex]);
+                                navigate("/booking/time");
+                            }}
+                        >
                                 Choose a time
                         </button>
                     </div>
@@ -175,4 +150,4 @@ function Date() {
         </>
     )
 }
-export default Date;
+export default DateStep;

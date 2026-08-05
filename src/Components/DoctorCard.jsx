@@ -1,9 +1,19 @@
 import { IoMdStar } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { useDoctor } from "../context/DoctorContext";
 
-function DoctorCard({ initials, avatarColor, name, speciality, rating, experience, fee, available }) {
+function DoctorCard({ id, initials, avatarColor, name, speciality, rating, experience, fee, available }) {
+    const navigate = useNavigate();
+    const { setSelectedDoctor } = useDoctor();
+
+    const handleCardClick = () => {
+        setSelectedDoctor({ id, initials, avatarColor, name, speciality, rating, experience, fee, available });
+        navigate("/booking");
+    };
+
     return (
         <>
-            <div className="card surface p-5 rounded-lg">
+            <div className="card surface p-5 rounded-lg cursor-pointer" onClick={handleCardClick}>
                 <div className="card-header py-2">
                     <div className="flex gap-3">
                         <div className={`card-img p-2 ${avatarColor} rounded-full text-[18px]  text-center w-12 h-12 flex justify-center items-center`}>

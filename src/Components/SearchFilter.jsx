@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
-import { CiSearch } from "react-icons/react-icons/ci";
+// import { CiSearch } from "react-icons/react-icons/ci";
 import Doctors from "../data/doctors.json";
 
 function Searchfilter() {
